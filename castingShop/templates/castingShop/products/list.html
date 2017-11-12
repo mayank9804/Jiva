@@ -1,0 +1,40 @@
+{% extends "castingShop/base.html" %}
+{% load static %}
+
+{% block title %}
+
+    Services
+
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+    <div id="sidebar">
+
+        <h3>Our services</h3>
+        <ul>
+            <a href="#"><li class="selected" style="text-decoration:none; color:white">
+              All
+            </li></a>
+            <a href="{% url "castingShop:customize" %}"><li>Not in the list!</li></a>
+          </ul>
+    </div>
+    <div id="main" class="product-list">
+        <h1>Products</h1>
+        {% for product in products %}
+            <div class="item">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                </a>
+                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
+
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "castingShop/base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+  Customize Service
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+        <form action="{% url "castingShop:customize" %}" method="post">
+          <div class="row">
+            <div class="form-group">
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                {% render_field form.first_name class+="form-control form-desgin" placeholder=form.first_name.label %}<span class="help-block">{{ form.first_name.errors }}</span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                {% render_field form.last_name class+="form-control form-desgin" placeholder=form.last_name.label %}<span class="help-block">{{ form.last_name.errors }}</span>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                {% render_field form.email class+="form-control form-desgin" placeholder=form.email.label %}<span class="help-block">{{ form.email.errors }}</span>
+              </div>
+
+
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              {% render_field form.address class+="form-control form-desgin" placeholder=form.address.label %}<br>
+          </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              {% render_field form.quantity class+="form-control form-desgin" placeholder=form.quantity.label %}<span class="help-block">{{ form.quantity.errors }}</span>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            {% render_field form.shape class+="form-control form-desgin" placeholder=form.shape.label %}<span class="help-block">{{ form.shape.errors }}</span>
+        </div>
+        </div>
+
+
+          <div class="col-xs-offset-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <input type="submit" value="Estimate Cost">
+            {% csrf_token %}
+        </div>
+        </form>
+    </div>
+{% endblock %}
